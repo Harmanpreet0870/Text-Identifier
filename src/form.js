@@ -11,7 +11,6 @@ export default function Form(props) {
     if(pass.length===0){
       props.showalert("PLEASE ENTER SOMETHING FIRST","warning")
     }
-    console.log("clicked"+pass);
   }
   const handleloClick = () => {
     console.log("clicked"+pass);
@@ -41,6 +40,8 @@ export default function Form(props) {
       
       else{
         setmat(0)
+        props.showalert("No Vowels Found","danger")
+        return; 
       }
       
 
