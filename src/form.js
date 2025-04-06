@@ -8,28 +8,41 @@ export default function Form(props) {
     let newpasst = pass.toUpperCase();
     newpass(newpasst)
     props.showalert("Converted to Upper case", "success");
+    if(pass.length===0){
+      props.showalert("PLEASE ENTER SOMETHING FIRST","warning")
+    }
+    console.log("clicked"+pass);
   }
   const handleloClick = () => {
     console.log("clicked"+pass);
     let newpasst = pass.toLowerCase();
     newpass(newpasst)
     props.showalert("Converted to Lower case","success");
+    if(pass.length===0){
+      props.showalert("PLEASE ENTER SOMETHING FIRST","warning")
+    }
     
   }
+  
   const handleVoClick = () => {
+    if (pass.length === 0) {
+      props.showalert("PLEASE ENTER SOMETHING FIRST", "warning");
+      return; // Exit the function if the input is empty
+    }
      console.log("clicked"+pass);
      let i;
      for( let i=0;i<pass.length;i++)
       console.log(pass[i])
-     let k=pass[i];
      let match=pass.match(/[aeiouAEIOU]/g);
       console.log("NICEE");
-      if(match)
-       setmat(match.length)
+      if(match){
+       setmat(match.length)}
+      
       
       else{
         setmat(0)
       }
+      
 
       console.log(mat);
       props.showalert("Vowerls were Found","success");
@@ -60,9 +73,9 @@ export default function Form(props) {
     </div>
 
   <div className='container my-3' style={{color:props.mode==='dark'?'white':'black'}} >
-    <h1>YOU TEXT SUMMARY</h1>
+    <h1>YOUR TEXT SUMMARY</h1>
   
-    <p>Total words {pass.split(" ").length} and {pass.length} characters and vowels present are {mat} </p>
+    <p>Total words {pass.split(" ").filter((element)=>{return element.length!==0}).length} and {pass.length} characters and vowels present are {mat} </p>
     <h2>Preview</h2>
     <p>{pass.length>0?pass:"Enter Something to preview"}</p>
     
